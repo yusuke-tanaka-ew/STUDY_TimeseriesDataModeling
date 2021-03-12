@@ -12,13 +12,21 @@ lambda_sm <- N_sm*P_sm
 Y_sm <- rpois(n_sample,lambda_sm)
 
 # USE STAN : BASE MODEL
-data <- list(
+dat <- list(
   n_sample = n_sample,
   Y = Y_sm,
   N = N_sm
 )
+res <- function(){
+  fit <- stan(file='./poisson.stan',data=dat)
+  return(fit)
+}
 
-fit <- stan(file='./poisson.stan',data=data)
+ft <- res()
+
+# PLOT
+plot(P_sm)
+abline(a=summary(ft)$summary[1,1],b=0)
 
 
 

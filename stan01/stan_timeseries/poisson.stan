@@ -12,7 +12,7 @@ parameters {
 transformed parameters {
   real lambda[n_sample];
   for(i in 1:n_sample)
-    lamda[i] = N[n_sample]*p;
+    lambda[i] = N[i]*p;
 }
 
 model {
